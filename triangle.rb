@@ -1,4 +1,4 @@
-class BonusDrink
+class Triangle
   def self.total_count_for(amount)
     amount + present_count_for(amount)
   end
