@@ -1,13 +1,25 @@
 class Triangle
-  def self.total_count_for(amount)
-    amount + present_count_for(amount)
+  attr_reader :sides
+
+  def initialize(*sides)
+    @sides = sides.map(&:to_f).sort
   end
 
-  def self.present_count_for(amount)
-    if amount == 0
-      0
+  def is_valid?
+    return false unless @sides.length == 3
+    return false if @sides.first <= 0
+    @sides[0] + @sides[1] > @sides[2]
+  end
+
+  def category
+    if !is_valid?
+      :invalid
+    elsif sides[0] == sides[1] && sides[1] == sides[2]
+      :regular
+    elsif sides[0] == sides[1] || sides[1] == sides[2]
+      :isosceles
     else
-      ((amount + 1)/2).floor - 1
+      :scalene
     end
   end
 end
