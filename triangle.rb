@@ -1,6 +1,13 @@
 class Triangle
   attr_reader :sides
 
+  CATEGORY_TO_SAY = {
+    invalid: "三角形じゃないです＞＜",
+    regular: "正三角形ですね！",
+    isosceles: "二等辺三角形ですね！",
+    scalene: "不等辺三角形ですね！",
+  }
+
   def initialize(*sides)
     @sides = sides.map(&:to_f).sort
   end
@@ -22,4 +29,12 @@ class Triangle
       :scalene
     end
   end
+
+  def say
+    CATEGORY_TO_SAY[category]
+  end
+end
+
+if __FILE__ == $0
+  puts Triangle.new(*ARGV).say
 end
