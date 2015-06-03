@@ -1,9 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../triangle')
 
 describe Triangle do
-  specify { expect(Triangle.total_count_for(0)).to eq 0 }
-  specify { expect(Triangle.total_count_for(1)).to eq 1 }
-  specify { expect(Triangle.total_count_for(3)).to eq 4 }
-  specify { expect(Triangle.total_count_for(11)).to eq 16 }
-  specify { expect(Triangle.total_count_for(100)).to eq 149 }
+  specify { expect(Triangle.new(0, 1, 2).category).to eq :invalid }
+  specify { expect(Triangle.new(1, 1, 2).category).to eq :invalid }
+  specify { expect(Triangle.new(1, 1, 1).category).to eq :regular }
+  specify { expect(Triangle.new(2, 2, 3).category).to eq :isosceles }
+  specify { expect(Triangle.new(2, 3, 3).category).to eq :isosceles }
+  specify { expect(Triangle.new(2, 3, 4).category).to eq :scalene }
 end
